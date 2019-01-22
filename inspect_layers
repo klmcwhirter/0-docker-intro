@@ -1,0 +1,13 @@
+#!/bin/bash
+
+function image_layers
+{
+  docker inspect -f '{{range .RootFS.Layers}}{{println .}}{{end}}' $1
+}
+
+for i in nginx mynginx mynginxcustom
+do
+  echo $i
+  image_layers $i
+done
+
